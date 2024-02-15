@@ -2,10 +2,10 @@
 #              Version 1.0 | Tested on Windows 10
 #              This is a Script to set the User Experience Profiles in PCoIP Agent
 #
-#              Profile      Exp      Bandwith        Network      User Roles
-#              Profile A	Best	 Highest	     LAN	      Office User Case
-#              Profile B	Great	 Moderate	     LAN/WAN	  Home Office User - Good Network Connection
-#              Profile C	Good	 Optimized	     WAN	      Home Office User - Poor Network Connection
+#              Profile          Exp      Bandwith        Network      User Roles
+#              Profile A	Best	 Highest	 LAN	      Office User Case
+#              Profile B	Great	 Moderate	 LAN/WAN      Home Office User - Good Network Connection
+#              Profile C	Good	 Optimized	 WAN	      Home Office User - Poor Network Connection
 #              Profile D	Good	 Constrained	 WAN	      Mobile User - Limited Network Connection
 #
 #              In case of concerns, please reach out to kairon.alves@hp.com
@@ -64,7 +64,7 @@ if ($Installcheck -eq "Running"){
             if("$ValuePF" -notmatch "pagefile"){Write-Host "PC Agent has the recommended Paging File Configuration" -ForegroundColor Green}
 			else {
 				write-host "Applying Paging File" -ForegroundColor Green
-               $sys = Get-WmiObject Win32_Computersystem –EnableAllPrivileges
+               $sys = Get-WmiObject Win32_Computersystem â€“EnableAllPrivileges
                $sys.AutomaticManagedPagefile = $false 
                $sys.put()
 
@@ -276,7 +276,7 @@ Profile D, Mobile Users" -ForegroundColor Yellow
 				#	Set-ItemProperty -Path $HKCUGPPath -Name setting -Value 000 -Type Dword
 					
 					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.yuv_chroma_subsampling -Value 1 -Type Dword
-					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.frame_rate_vs_quality_factor -Value 40 -Type Dword
+					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.frame_rate_vs_quality_factor -Value 30 -Type Dword
 					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.use_client_img_settings -Value 0 -Type Dword		
 					
 								
@@ -290,7 +290,7 @@ Profile D, Mobile Users" -ForegroundColor Yellow
 					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.minimum_image_quality -Value 30 -Type Dword
 					
 					#Maximum Initial Image Quality
-					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.maximum_initial_image_quality -Value 70 -Type Dword
+					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.maximum_initial_image_quality -Value 60 -Type Dword
 
 					#Maximum Frame Rate (fps)
 					Set-ItemProperty -Path $HKCUGPPath -Name pcoip.maximum_frame_rate -Value 30 -Type Dword
